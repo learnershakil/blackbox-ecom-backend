@@ -56,6 +56,7 @@ export const createOrder = async (
       const coupon = await Coupon.findOne({
         code: couponCode.toUpperCase(),
         isActive: true,
+        validFrom: { $lte: new Date() },
         validUntil: { $gt: new Date() },
       });
 
